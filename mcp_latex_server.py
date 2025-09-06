@@ -5,11 +5,6 @@ Version: 1.2.0 - Fixed initialization
 License: MIT
 """
 
-Author: MCP LaTeX Server
-Version: 1.2.0 - Fixed initialization
-License: MIT
-"""
-
 import os
 import sys
 import json
@@ -875,3 +870,4 @@ For more information, visit the documentation.
 if __name__ == "__main__":
 
     main()
+
