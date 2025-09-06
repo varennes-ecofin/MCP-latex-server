@@ -1,81 +1,85 @@
-# Serveur MCP LaTeX - Installation Windows
-This MCP server python-based code is designed for LaTeX users looking for more AI integration
+# MCP LaTeX Server - Windows Installation
 
-## 📍 Emplacements sur votre système
+## 📍 Locations on your system
 
-- **Serveur MCP** : `C:\Users\username\Documents\MCP\latex-server\`
-- **Projets LaTeX** : `C:\Users\username\Documents\LaTeX\`
-- **Config Claude** : `C:\Users\username\AppData\Roaming\Claude\claude_desktop_config.json`
+  - **MCP Server**: `C:\Users\username\Documents\MCP\latex-server\`
+  - **LaTeX Projects**: `C:\Users\username\Documents\LaTeX\`
+  - **Claude Config**: `C:\Users\username\AppData\Roaming\Claude\claude_desktop_config.json`
 
-## ⚡ Installation manuelle
+## ⚡ Manual Installation
 
-1. **Créer les dossiers** :
-```cmd
-mkdir C:\Users\username\Documents\MCP\latex-server
-mkdir C:\Users\username\Documents\LaTeX
+1.  **Create the directories**:
+
+    ```cmd
+    mkdir C:\Users\username\Documents\MCP\latex-server
+    mkdir C:\Users\username\Documents\LaTeX
+    ```
+
+2.  **Install dependencies**:
+
+    ```cmd
+    cd C:\Users\username\Documents\MCP\latex-server
+    pip install mcp aiofiles
+    ```
+
+3.  **Copy the server**:
+
+      - Place `mcp_latex_server.py` in `C:\Users\username\Documents\MCP\latex-server\`
+
+4.  **Configure Claude Desktop**:
+
+      - Edit `C:\Users\username\AppData\Roaming\Claude\claude_desktop_config.json`
+      - Add:
+        ```json
+        {
+          "mcpServers": {
+            "latex-server": {
+              "command": "python",
+              "args": [
+                "C:\\Users\\username\\Documents\\MCP\\latex-server\\mcp_latex_server.py",
+                "--workspace",
+                "C:\\Users\\username\\Documents\\LaTeX"
+              ]
+            }
+          }
+        }
+        ```
+
+5.  **Restart Claude Desktop**
+
+## ✅ Verification
+
+### Quick test in Claude Desktop
+
+Type into Claude:
+
+```
+"Create a test.tex file with an article template"
 ```
 
-2. **Installer les dépendances** :
-```cmd
-cd C:\Users\username\Documents\MCP\latex-server
-pip install mcp aiofiles
-```
+If it works, Claude will create `C:\Users\username\Documents\LaTeX\test.tex`
 
-3. **Copier le serveur** :
-- Placez `mcp_latex_server.py` dans `C:\Users\username\Documents\MCP\latex-server\`
-
-4. **Configurer Claude Desktop** :
-- Éditez `C:\Users\username\AppData\Roaming\Claude\claude_desktop_config.json`
-- Ajoutez :
-```json
-{
-  "mcpServers": {
-    "latex-server": {
-      "command": "python",
-      "args": [
-        "C:\\Users\\username\\Documents\\MCP\\latex-server\\mcp_latex_server.py",
-        "--workspace",
-        "C:\\Users\\username\\Documents\\LaTeX"
-      ]
-    }
-  }
-}
-```
-
-5. **Redémarrer Claude Desktop**
-
-## ✅ Vérification
-
-### Test rapide dans Claude Desktop
-
-Tapez dans Claude :
-```
-"Crée un fichier test.tex avec un template article"
-```
-
-Si ça fonctionne, Claude créera `C:\Users\username\Documents\LaTeX\test.tex`
-
-### Test en ligne de commande
+### Command line test
 
 ```cmd
 cd C:\Users\username\Documents\MCP\latex-server
 python mcp_latex_server.py --workspace C:\Users\username\Documents\LaTeX
 ```
 
-## 📂 Structure finale
+## 📂 Final Structure
 
 ```
 C:\Users\username\
 ├── Documents\
 │   ├── MCP\
 │   │   └── latex-server\
-│   │       ├── mcp_latex_server.py      # Serveur principal
-│   │       └── README.md                 # Ce fichier
+│   │       ├── mcp_latex_server.py      # Main server
+│   │       └── README.md                 # This file
 │   │
-│   └── LaTeX\                           # Vos projets
+│   └── LaTeX\                           # Your projects
 │       ├── Articles\
 │       ├── Presentations\
-│       └── (vos fichiers .tex)
+│       └── (your .tex files)
 │
 └── AppData\
     └── Roaming\
@@ -83,54 +87,58 @@ C:\Users\username\
             └── claude_desktop_config.json  # Configuration
 ```
 
-## 🎯 Utilisation quotidienne
+## 🎯 Daily Usage
 
-### Commandes essentielles dans Claude
+### Essential commands in Claude
 
-| Action | Commande dans Claude |
-|--------|---------------------|
-| Créer un document | `"Crée article.tex avec template article"` |
-| Lire un fichier | `"Lis mon fichier thesis.tex"` |
-| Compiler | `"Compile main.tex avec pdflatex"` |
-| Valider | `"Vérifie la syntaxe de document.tex"` |
-| Organiser | `"Organise mes fichiers LaTeX"` |
-| Nettoyer | `"Nettoie les fichiers auxiliaires"` |
-| Changer de répertoire | `"Change le répertoire de travail pour ..."` |
+| Action | Command in Claude |
+|---|---|
+| Create a document | `"Create article.tex with article template"` |
+| Read a file | `"Read my thesis.tex file"` |
+| Compile | `"Compile main.tex with pdflatex"` |
+| Validate | `"Check the syntax of document.tex"` |
+| Organize | `"Organize my LaTeX files"` |
+| Clean up | `"Clean up auxiliary files"` |
+| Change directory | `"Change the working directory to ..."` |
 
-### Workflows recommandés
+### Recommended Workflows
 
-**Nouvel article :**
-1. `"Crée un article sur l'IA avec support mathématique"`
-2. `"Compile l'article"`
+**New article:**
 
-**Projet existant :**
-1. Copiez votre projet dans `C:\Users\username\Documents\LaTeX\mon-projet\`
-2. `"Liste les fichiers dans mon-projet"`
-3. `"Compile mon-projet/main.tex"`
+1.  `"Create an article on AI with mathematical support"`
+2.  `"Compile the article"`
 
-## 🔧 Dépannage
+**Existing project:**
 
-### Le serveur ne se charge pas
-- Vérifiez que Claude Desktop est bien fermé puis relancé
-- Vérifiez le fichier de config JSON (attention aux virgules et guillemets)
+1.  Copy your project into `C:\Users\username\Documents\LaTeX\my-project\`
+2.  `"List the files in my-project"`
+3.  `"Compile my-project/main.tex"`
 
-### Erreur "python non reconnu"
-- Ajoutez Python au PATH système
-- Ou utilisez le chemin complet : `"command": "C:\\Python312\\python.exe"`
-- Si l'erreur persiste, optez pour un environnement virtuel et ajouter le PATH dans la config JSON 
+## 🔧 Troubleshooting
 
-### Erreur de compilation LaTeX
-- Vérifiez que MiKTeX ou TeX Live est installé
-- Testez `pdflatex --version` dans cmd
+### The server does not load
+
+  - Verify that Claude Desktop has been properly closed and restarted
+  - Check the JSON config file (be careful with commas and quotes)
+
+### "python not recognized" error
+
+  - Add Python to the system PATH
+  - Or use the full path: `"command": "C:\\Python312\\python.exe"`
+  - If the error persists, opt for a virtual environment and add the PATH to the JSON config
+
+### LaTeX compilation error
+
+  - Check that MiKTeX or TeX Live is installed
+  - Test `pdflatex --version` in cmd
 
 ## 📞 Support
 
-- Logs : Dans Claude Desktop, Ctrl+Shift+I → Console
-- Test : `mcp_latex_server.py` dans le dossier du serveur
-- Debug : Ajoutez `"--log-level", "DEBUG"` dans les args de la config JSON
+  - Logs: In Claude Desktop, Ctrl+Shift+I → Console
+  - Test: `mcp_latex_server.py` in the server folder
+  - Debug: Add `"--log-level", "DEBUG"` in the args of the JSON config
 
----
+-----
 
-*Serveur MCP LaTeX v1.0.0*  
-*Chemin serveur : C:\Users\username\Documents\MCP\latex-server*  
-*Workspace LaTeX : C:\Users\username\Documents\LaTeX*
+*MCP LaTeX Server v1.0.0* 
+*Server path: C:\\Users\\username\\Documents\\MCP\\latex-server* *LaTeX Workspace: C:\\Users\\username\\Documents\\LaTeX*
