@@ -1,4 +1,5 @@
 # MCP LaTeX Server - Windows Installation
+This MCP LaTeX server, coded in Python, is intended for TeX Live and MikTeX users wishing for a deeper AI integration in their use of LaTeX. The installation is documented for Windows with Claude Desktop as an example, but it also works on Mac with other AIs.
 
 ## 📍 Locations on your system
 
