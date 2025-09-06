@@ -1,7 +1,9 @@
-#!/usr/bin/env python3
 """
-Complete MCP Server for LaTeX integration with Claude Desktop.
-Fixed version that handles MCP protocol correctly.
+MCP Server for LaTeX integration with Claude Desktop.
+
+Version: 1.2.0 - Fixed initialization
+License: MIT
+"""
 
 Author: MCP LaTeX Server
 Version: 1.2.0 - Fixed initialization
@@ -871,4 +873,5 @@ For more information, visit the documentation.
 
 
 if __name__ == "__main__":
+
     main()
